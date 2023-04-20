@@ -49,4 +49,12 @@
 modules.order
 Module.symvers
 Mkfile.old
+
+
+
+# MATLAB
+*.asv
+*.pdf
+
+
 dkms.conf
