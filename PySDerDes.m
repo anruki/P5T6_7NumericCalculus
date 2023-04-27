@@ -1,4 +1,4 @@
-function [yd, ydd] = PySDerDes(x,y)
+function [yd, ydd] = PySDerDes(x, y)
 % Función que calcula la primera y segunda derivada para un conjunto de
 % puntos. El algoritmo utilizado es el método de aproximación de la 
 % derivada por diferencias finitas.
@@ -8,6 +8,7 @@ function [yd, ydd] = PySDerDes(x,y)
 %   yd = vector fila con la primera derivada en los puntos
 %   ydd = vector fila con la segunda derivada en los puntos
 % Nota: Se deben introducir al menos 4 puntos.
+% Nota: x es la variable independiente respecto de la que se deriva.
     n = numel(x);
     if n ~= numel(y)
         disp("Error: Debe introducir el mismo número de coords y que x")
