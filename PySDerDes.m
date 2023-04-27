@@ -24,10 +24,10 @@ function [yd, ydd] = PySDerDes(x,y)
     yd = zeros(1, n);
 
     yd(1) = d_lagrange(x(1:3), y(1:3), x(1));
-    for i = 2: n-1
-        yd(i) = d_lagrange(x(i-1:i+1), y(i-1:i+1), x(i));
+    for i = 1: n-2
+        yd(i+1) = d_lagrange(x(i:i+2), y(i:i+2), x(i+1));
     end
-    yd(n) = d_lagrange(x(n-2:n), y(n-2:n), x(n));
+    yd(i+2) = d_lagrange(x(i:i+2), y(i:i+2), x(i+2));
 
     dd_lagrange = @(x, y, xval) ...
         6*xval-2*x(2)-2*x(3)-2*x(4) / ((x(1)-x(2))*(x(1)-x(3))*(x(1)-x(4))) * y(1) + ...
@@ -39,6 +39,6 @@ function [yd, ydd] = PySDerDes(x,y)
     for i = 2: n-2
         ydd(i) = d_lagrange(x(i-1:i+2), y(i-1:i+2), x(i));
     end
-    ydd(n-1) = dd_lagrange(x(n-3:n), y(n-3:n), x(n-1));
-    ydd(n) = dd_lagrange(x(n-3:n), y(n-3:n), x(n));
+    ydd(i+1) = dd_lagrange(x(i-1:i+2), y(i-1:i+2), x(i+1));
+    ydd(i+2) = dd_lagrange(x(i-1:i+2), y(n-3:i+2), x(i+2));
 end
